@@ -1,7 +1,8 @@
 {
-  "name": "my-trends-proxy",
+  "name": "trends-proxy",
   "version": "1.0.0",
-  "scripts": {
-    "start": "node api/trends.js"
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
   }
 }
