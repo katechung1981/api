@@ -1,6 +1,15 @@
+Google Sheets 端
 meme_api/
 ├── api/
 │   └── trends.py             ← 主 Python 程式 (Flask + pytrends)
 ├── requirements.txt          ← Python 依賴模組
 ├── vercel.json               ← Vercel 部署設定
 └── package.json              ← 用於讓 Vercel 認識 Python app
+
+
+Vercel 端
+meme_api/
+├── api/trends.py
+├── requirements.txt
+├── vercel.json
+└── package.json
