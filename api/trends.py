@@ -6,7 +6,7 @@ import time
 
 def handler(request):
     query = parse_qs(request.query)
-    keyword = query.get("keyword", [""])[0]
+    keyword = query.get("keyword", [""])[0].strip().upper()
 
     if not keyword:
         return {
@@ -16,14 +16,11 @@ def handler(request):
 
     try:
         pytrends = TrendReq(hl='en-US', tz=360)
-        time.sleep(random.uniform(1, 3))  # 防止 Google 429
+        time.sleep(random.uniform(1.5, 3.5))
         pytrends.build_payload([keyword], cat=0, timeframe='now 7-d', geo='', gprop='')
         data = pytrends.interest_over_time()
 
-        if data.empty or keyword not in data.columns:
-            score = 0
-        else:
-            score = int(data[keyword].iloc[-1])
+        score = int(data[keyword].iloc[-1]) if not data.empty and keyword in data.columns else 0
 
         return {
             "statusCode": 200,
